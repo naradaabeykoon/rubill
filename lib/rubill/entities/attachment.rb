@@ -4,15 +4,12 @@ module Rubill
   class Attachment < Base
     def self.send_attachment(object_id, file_name, content)
       file = Tempfile.new(file_name)
-
       begin
-        file.write(content)
+        file.write(File.open(content.path).read)
         file.rewind
-
         Query.execute("/UploadAttachment.json", {
           id: object_id,
           fileName: file_name,
-          document: content,
           "_top_level_data" => {
             file: file,
             multipart: true
