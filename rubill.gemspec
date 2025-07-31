@@ -1,3 +1,5 @@
+require 'date'
+
 Gem::Specification.new do |spec|
   spec.name        = 'rubill'
   spec.version     = '0.2.1'
